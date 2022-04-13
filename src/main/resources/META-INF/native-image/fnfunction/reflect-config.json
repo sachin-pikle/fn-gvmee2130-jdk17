@@ -1,0 +1,9 @@
+[
+  {
+    "name" : "com.example.fn.FnGvmee2130Jdk17",
+    "methods" : [
+      { "name" : "handleRequest" },
+      { "name" : "<init>" }
+    ]
+  }
+]
