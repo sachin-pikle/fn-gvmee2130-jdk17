@@ -6,8 +6,7 @@ env:
   # the value of a vaultVariable is the secret-id (in OCI ID format) stored in the OCI Vault service
   # you can then access the value of that secret in your build_spec.yaml commands
   vaultVariables:
-    # REGISTRY_USER: "ocid1.vaultsecret.oc1.phx.amaaaaaacrsaiiiakusyuuzlutwvxam2yxkfeaovibnya4ze2w6ck2nwqelq"
-    REGISTRY_USER: ${TEST}
+    REGISTRY_USER: "ocid1.vaultsecret.oc1.phx.amaaaaaacrsaiiiakusyuuzlutwvxam2yxkfeaovibnya4ze2w6ck2nwqelq"
     REGISTRY_PASS: "secret-id"
 steps:
   - type: Command
