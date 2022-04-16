@@ -7,7 +7,7 @@ env:
   # you can then access the value of that secret in your build_spec.yaml commands
   vaultVariables:
     REGISTRY_USER: "ocid1.vaultsecret.oc1.phx.amaaaaaacrsaiiiakusyuuzlutwvxam2yxkfeaovibnya4ze2w6ck2nwqelq"
-    REGISTRY_PASS: "ocid1.vaultsecret.oc1.phx.amaaaaaacrsaiiiakusyuuzlutwvxam2yxkfeaovibnya4ze2w6ck2nwqelq"
+    REGISTRY_PASS: "ocid1.vaultsecret.oc1.phx.amaaaaaacrsaiiiabpyc5irykfrlaslc2scpovtksye5ftbw6zkf6z7knkqq"
 steps:
   - type: Command
     name: "Fn CLI version"
@@ -19,7 +19,6 @@ steps:
     name: "Fn build"
     command: |
       echo "REGISTRY_NAME: " ${REGISTRY_NAME}
-      echo "REGISTRY_USER: " ${REGISTRY_USER}
       docker login ${REGISTRY_NAME} -u ${REGISTRY_USER} -p ${REGISTRY_PASS}
       fn -v build
     onFailure:
