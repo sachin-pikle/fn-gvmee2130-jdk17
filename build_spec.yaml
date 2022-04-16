@@ -1,8 +1,14 @@
-version: 0.1             
+version: 0.1
 component: build
 timeoutInSeconds: 1000
-shell: bash           
-
+shell: bash
+env:
+  # the value of a vaultVariable is the secret-id (in OCI ID format) stored in the OCI Vault service
+  # you can then access the value of that secret in your build_spec.yaml commands
+  vaultVariables:
+    # REGISTRY_USER: "ocid1.vaultsecret.oc1.phx.amaaaaaacrsaiiiakusyuuzlutwvxam2yxkfeaovibnya4ze2w6ck2nwqelq"
+    REGISTRY_USER: ${TEST}
+    REGISTRY_PASS: "secret-id"
 steps:
   - type: Command
     name: "Fn CLI version"
@@ -13,4 +19,13 @@ steps:
   - type: Command
     name: "Fn build"
     command: |
+      echo "REGISTRY_NAME: " ${REGISTRY_NAME}
+      echo "REGISTRY_USER: " ${REGISTRY_USER}
+      docker login ${REGISTRY_NAME} -u ${REGISTRY_USER} -p ${REGISTRY_PASS}
       fn -v build
+    onFailure:
+      - type: Command
+        command: |
+          echo "Handling Failure"
+          build_result=FAILURE
+          echo "Failure successfully handled"
