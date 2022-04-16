@@ -29,7 +29,7 @@ steps:
           build_result=FAILURE
           echo "Failure successfully handled"
 outputArtifacts:
-  - name: "Build output function image"
+  - name: Build_output_function_image
     type: DOCKER_IMAGE
     # this is only the locally exported container image name
     # this location tag doesn't effect the tag used to deliver the container image
