@@ -8,7 +8,19 @@ env:
   vaultVariables:
     REGISTRY_USER: "ocid1.vaultsecret.oc1.phx.amaaaaaacrsaiiiakusyuuzlutwvxam2yxkfeaovibnya4ze2w6ck2nwqelq"
     REGISTRY_PASS: "ocid1.vaultsecret.oc1.phx.amaaaaaacrsaiiiabpyc5irykfrlaslc2scpovtksye5ftbw6zkf6z7knkqq"
+
+  # exportedVariables are made available to use as parameters in sucessor Build Pipeline stages
+  # For this Build to run, the Build Pipeline needs to have a BUILDRUN_HASH parameter set
+  exportedVariables:
+    - BUILDRUN_HASH
+
 steps:
+  - type: Command
+    name: "Define unique image tag"
+    timeoutInSeconds: 140
+    command: |
+      export BUILDRUN_HASH=`echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7`
+      echo "BUILDRUN_HASH: " $BUILDRUN_HASH
   - type: Command
     name: "Fn CLI version"
     command: |
