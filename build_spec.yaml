@@ -21,9 +21,17 @@ steps:
       echo "REGISTRY_NAME: " ${REGISTRY_NAME}
       docker login ${REGISTRY_NAME} -u ${REGISTRY_USER} -p ${REGISTRY_PASS}
       fn -v build
+      docker images
     onFailure:
       - type: Command
         command: |
           echo "Handling Failure"
           build_result=FAILURE
           echo "Failure successfully handled"
+outputArtifacts:
+  - name: "Build output function image"
+    type: DOCKER_IMAGE
+    # this is only the locally exported container image name
+    # this location tag doesn't effect the tag used to deliver the container image
+    # to the Container Registry.
+    location: fn-gvmee2130-jdk17:0.0.1
