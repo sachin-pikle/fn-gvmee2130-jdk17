@@ -9,3 +9,8 @@ steps:
     command: |
       fn --version
       pwd
+      ls -alh
+  - type: Command
+    name: "Fn build"
+    command: |
+      fn -v build
