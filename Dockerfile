@@ -39,10 +39,10 @@ RUN /usr/bin/native-image \
 FROM fnproject/fn-java-fdk:jre17-1.0.146 as fdk
 
 # FROM may be any Linux container image with glibc, e.g.,
-#  gcr.io/distroless/base
+FROM gcr.io/distroless/base
 #  frolvlad/alpine-glibc
 #  debian:buster-slim
-FROM oraclelinux:8-slim
+# FROM oraclelinux:8-slim
 WORKDIR /function
 COPY --from=graalvm /function/func func
 COPY --from=fdk /function/runtime/lib/* ./
